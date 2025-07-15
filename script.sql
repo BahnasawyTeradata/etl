@@ -57,7 +57,7 @@ updates as (
     select
         table_name,
             string_agg(printf(
-                '(X.%1$s IS NULL AND Y.%1$s IS NOT NULL) OR (X.%1$s IS NOT NULL AND Y.%1$s IS NULL) OR (X.%1$s <> Y.%1$s))',
+                '((X.%1$s IS NULL AND Y.%1$s IS NOT NULL) OR (X.%1$s IS NOT NULL AND Y.%1$s IS NULL) OR (X.%1$s <> Y.%1$s))',
                 column_name
             ), ' OR ')
          as columns
@@ -94,7 +94,7 @@ deletes as (
   X.ETL_END_TS,
   CASE WHEN %4$s THEN 'INS' --- IF MULTIPLE PKs are there then concatenate them with AND
   WHEN %5$s  --- IF MULTIPLE PKs are there then concatenate them with AND
-  AND(
+  AND
   ( %6$s ) THEN 'UPD'
   WHEN %7$s THEN 'DEL' --- IF MULTIPLE PKs are there then concatenate them with AND
   END AS OPT_FLAG

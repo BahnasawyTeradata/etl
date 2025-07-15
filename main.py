@@ -29,8 +29,7 @@ scripts = db.query(open(f"{path}/script.sql", "r", encoding="utf-8").read()).to_
 def write_to_file(row):
     with open(f"{path}/scripts/{row["table_name"]}.sql", "w", encoding="utf-8") as f:
         f.write(
-            row["scripts"]
-            # transpile(row["scripts"], read="teradata", write="teradata", pretty=True)[0]
+            transpile(row["scripts"], read="teradata", write="teradata", pretty=True)[0]
         )
 
 
