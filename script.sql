@@ -76,7 +76,7 @@ deletes as (
  select
   non_pks.table_name,
   printf($$
-  REPLACE VIEW DEVV_STG_FLX.%1$s AS
+  REPLACE VIEW DEVV_STG_FLX.%1$s_get_delta AS
   LOCK ROW FOR ACCESS
   SELECT
   %2$s,
